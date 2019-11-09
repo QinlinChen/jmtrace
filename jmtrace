@@ -1,0 +1,2 @@
+#!/bin/bash
+java -javaagent:target/jmtrace-1.0-SNAPSHOT.jar $@
