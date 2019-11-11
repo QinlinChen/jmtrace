@@ -33,45 +33,53 @@ public class MemoryTraceLog {
     // Trace utilities.
     // --------------------------------------------------------------------------------------------
 
-    private static void traceAccess(String op, Object obj, String descriptor) {
+    private static void logAccess(String op, Object obj, String descriptor) {
         logf("%s %d %x %s\n", op, Thread.currentThread().getId(), System.identityHashCode(obj),
                 descriptor);
     }
 
-    private static void traceAccessField(String op, Object obj, String className,
-            String fieldName) {
-        String descriptor = String.format("%s.%s", className.replace("/", "."), fieldName);
-        traceAccess(op, obj, descriptor);
+    private static void logAccessField(String op, Object obj, String fieldName) {
+        String className = obj.getClass().getCanonicalName();
+        logAccess(op, obj, className + "." + fieldName);
     }
 
-    // private static void traceAccessArray(String op, Object obj, String className,
-    // int index) {
-    // String descriptor = String.format("%s[%d]", className.replace("/", "."),
-    // index);
-    // traceAccess(op, obj, descriptor);
-    // }
-
-    public static void traceGETFIELD(Object obj, String className, String fieldName) {
-        traceAccessField("R", obj, className, fieldName);
+    private static void logAccessStaticField(String op, String className, String fieldName) {
+        className = className.replace("/", ".");
+        Object classObj = null;
+        try {
+            classObj = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            logln(e.getMessage());
+        }
+        logAccess(op, classObj, className + "." + fieldName);
     }
 
-    public static void tracePUTFIELD(Object obj, String className, String fieldName) {
-        traceAccessField("W", obj, className, fieldName);
+    private static void logAccessArray(String op, Object obj, String className, int index) {
+        String descriptor = String.format("%s[%d]", className.replace("/", "."), index);
+        logAccess(op, obj, descriptor);
     }
 
-    public static void traceGETSTATIC(String className, String fieldName) {
-        // traceAccessField("R", className, fieldName);
+    public static void logGETFIELD(Object obj, String fieldName) {
+        logAccessField("R", obj, fieldName);
     }
 
-    public static void tracePUTSTATIC(String className, String fieldName) {
-        // traceAccessField("W", className, fieldName);
+    public static void logPUTFIELD(Object obj, String fieldName) {
+        logAccessField("W", obj, fieldName);
     }
 
-    public static void traceASTORE() {
+    public static void logGETSTATIC(String className, String fieldName) {
+        logAccessStaticField("R", className, fieldName);
+    }
+
+    public static void logPUTSTATIC(String className, String fieldName) {
+        logAccessStaticField("W", className, fieldName);
+    }
+
+    public static void logASTORE() {
 
     }
 
-    public static void traceALOAD() {
+    public static void logALOAD() {
 
     }
 
