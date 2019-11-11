@@ -8,6 +8,8 @@ public class MemoryTraceClassAdapter extends ClassVisitor {
 
     private boolean enableMemoryTrace = false;
 
+    private static String[] libList = new String[] {"java", "jdk", "sun/launcher"};
+
     public MemoryTraceClassAdapter(ClassVisitor classVisitor) {
         super(Opcodes.ASM7, classVisitor);
     }
@@ -21,10 +23,6 @@ public class MemoryTraceClassAdapter extends ClassVisitor {
         super.visit(version, access, name, signature, superName, interfaces);
     }
 
-    private boolean isLibClass(String className) {
-        return !className.startsWith("cn/edu/nju/cs");
-    }
-
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature,
             String[] exceptions) {
@@ -35,4 +33,12 @@ public class MemoryTraceClassAdapter extends ClassVisitor {
         return mv;
     }
 
+    private boolean isLibClass(String className) {
+        for (String lib : libList) {
+            if (className.startsWith(lib)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

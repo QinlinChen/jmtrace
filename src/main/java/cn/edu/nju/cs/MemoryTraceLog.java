@@ -19,7 +19,7 @@ public class MemoryTraceLog {
     // Log utilities.
     // --------------------------------------------------------------------------------------------
 
-    private static PrintStream logStream = System.err;
+    private static PrintStream logStream = System.out;
 
     public static void logln(String x) {
         logStream.println(x);

@@ -1,38 +1,48 @@
 package cn.edu.nju.cs;
 
-class Dog {
-    public static String category = "dog";
-
-    public String name;
-    public int age;
-    public double happy;
-
-    Dog(String name, int age, double happy) {
-        this.name = name;
-        this.age = age;
-        this.happy = happy;
-    }
-}
-
-
 public class Demo {
 
+    public boolean[] az = new boolean[1];
+    public char[] ac = new char[1];
+    public byte[] ab = new byte[1];
+    public short[] as = new short[1];
+    public int[] ai = new int[1];
+    public long[] al = new long[1];
+    public float[] af = new float[1];
+    public double[] ad = new double[1];
+    public String[] astr = new String[1];
+
+    public static boolean sz;
+    public static char sc;
+    public static byte sb;
+    public static short ss;
+    public static int si;
+    public static long sl;
+    public static float sf;
+    public static double sd;
+    public static String sstr;
+
     public static void main(String[] args) {
-        Dog dog = new Dog("Danny", 1, 100.0);
-        System.out.println(dog.happy);
+        Demo.sz = true;
+        Demo.sc = 'a';
+        Demo.sb = 1;
+        Demo.ss = 2;
+        Demo.si = 3;
+        Demo.sl = 4;
+        Demo.sf = 5.0f;
+        Demo.sd = 6.0;
+        Demo.sstr = "Hello";
 
-        int[] ai = {1, 2, 3, 4};
-        double[] di = {100.0, -0.01};
-
-        ai[1] = 100;
-        di[0] = 3.14;
-        System.out.println(ai[1]);
-        System.out.println(di[0]);
-
-        // Dog[] dogs = new Dog[] { new Dog("Danny", 1) };
-        // Dog.category = dogs[0].name;
-        // System.out.println(Dog.category);
-
+        Demo obj = new Demo();
+        obj.az[0] = Demo.sz;
+        obj.ab[0] = Demo.sb;
+        obj.ac[0] = Demo.sc;
+        obj.as[0] = Demo.ss;
+        obj.ai[0] = Demo.si;
+        obj.al[0] = Demo.sl;
+        obj.af[0] = Demo.sf;
+        obj.ad[0] = Demo.sd;
+        obj.astr[0] = Demo.sstr;
     }
 
 }
