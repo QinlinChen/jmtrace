@@ -5,31 +5,33 @@ class Dog {
 
     public String name;
     public int age;
+    public double happy;
 
-    Dog(String name, int age) {
+    Dog(String name, int age, double happy) {
         this.name = name;
         this.age = age;
+        this.happy = happy;
     }
 }
 
+
 public class Demo {
-    
+
     public static void main(String[] args) {
-        Dog dog = new Dog("Danny", 1);
-        // System.out.println(dog.name + ": " + dog.age);
-        // dog.age = 2;
-        // System.out.println(dog.name + ": " + dog.age);
+        Dog dog = new Dog("Danny", 1, 100.0);
+        System.out.println(dog.happy);
 
-        Dog.category = dog.name;
-        System.out.println(Dog.category);
+        int[] ai = {1, 2, 3, 4};
+        double[] di = {100.0, -0.01};
 
-        int[] ai = new int[4];
-        for (int i = 0 ; i < ai.length; ++i) {
-            ai[i] = i;
-        }
-        for (int i : ai) {
-            System.out.println(i);
-        }
+        ai[1] = 100;
+        di[0] = 3.14;
+        System.out.println(ai[1]);
+        System.out.println(di[0]);
+
+        // Dog[] dogs = new Dog[] { new Dog("Danny", 1) };
+        // Dog.category = dogs[0].name;
+        // System.out.println(Dog.category);
 
     }
 
