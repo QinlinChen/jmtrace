@@ -8,6 +8,8 @@ It is easy to build by
 
     mvn package
 
+and the result package is `target/jmtrace-<version>-jar-with-dependencies.jar`
+
 ## Usage
 
 The usage is same to the `java` command. For example,
@@ -20,3 +22,6 @@ and memory access logs will be printed to `stdout` in the format:
 
     R(ead)|W(rite) <threadId> <ObjectId> <ObjectType.fieldName|ClassName.staticFiledName|ArrayType[index]>
 
+Note that `./jmtrace` is in fact a shell script
+and you can indicate the path of JAR packaged by maven.
+The default path is `target/jmtrace-<version>-jar-with-dependencies.jar`.

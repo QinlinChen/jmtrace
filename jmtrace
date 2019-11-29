@@ -1,2 +1,3 @@
 #!/bin/bash
-java -javaagent:target/jmtrace-1.0-SNAPSHOT.jar $@
+JMTRACE_PATH=target/jmtrace-1.0-SNAPSHOT-jar-with-dependencies.jar # You can modify it.
+java -javaagent:${JMTRACE_PATH} $@

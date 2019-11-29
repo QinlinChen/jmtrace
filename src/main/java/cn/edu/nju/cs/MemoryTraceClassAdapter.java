@@ -6,9 +6,9 @@ import org.objectweb.asm.Opcodes;
 
 public class MemoryTraceClassAdapter extends ClassVisitor {
 
-    private boolean enableMemoryTrace = false;
+    private boolean enableMemoryTrace = true;
 
-    private static String[] libList = new String[] {"java", "jdk", "sun/launcher"};
+    private static String[] libList = new String[] {"java"};
 
     public MemoryTraceClassAdapter(ClassVisitor classVisitor) {
         super(Opcodes.ASM7, classVisitor);
@@ -17,8 +17,8 @@ public class MemoryTraceClassAdapter extends ClassVisitor {
     @Override
     public void visit(int version, int access, String name, String signature, String superName,
             String[] interfaces) {
-        if (!isLibClass(name)) {
-            enableMemoryTrace = true;
+        if (isLibClass(name)) {
+            enableMemoryTrace = false;
         }
         super.visit(version, access, name, signature, superName, interfaces);
     }
