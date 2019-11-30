@@ -13,7 +13,9 @@ public class MemoryTraceTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
             ProtectionDomain protectionDomain, byte[] classfileBuffer)
             throws IllegalClassFormatException {
-        MemoryTraceLog.logln(loader.getName() + " load " + className);
+        if (loader == null) {
+            return null;    // Ignore the classes loaded by bootloader
+        }
 
         ClassReader reader = new ClassReader(classfileBuffer);
         ClassWriter writer = new ClassWriter(reader, 0);

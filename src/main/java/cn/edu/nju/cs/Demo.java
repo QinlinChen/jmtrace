@@ -43,6 +43,8 @@ public class Demo {
         obj.af[0] = Demo.sf;
         obj.ad[0] = Demo.sd;
         obj.astr[0] = Demo.sstr;
+
+        System.out.println("Hello, world!");
     }
 
 }
